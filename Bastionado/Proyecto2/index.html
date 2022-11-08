@@ -1,0 +1,99 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Proyecto 2</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="proyecto2"
+                  title="Proyecto 2"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Introducción" duration="2">
+        <h2 is-upgraded>¿Cuál es el objetivo?</h2>
+<p>En este proyecto veremos como estará organizada nuestra red de la empresa. Haremos <strong>VLSM</strong> y crearemos <strong>VLAN</strong> para el aislamiento de equipos.</p>
+<h2 is-upgraded>Infraestructura de red</h2>
+<p>Aquí veremos la ip de red usada en nuestra red tanto como las ip que se reparten usando <em>VLSM</em> y las <em>VLAN</em> divididas en diferentes colores.</p>
+<p>Tenemos lo siguiente:</p>
+<ul>
+<li>IP de Red: 192.168.3.0/24  <ul>
+<li>Red 1: 192.168.3.0/29</li>
+<li>Red 2: 192.168.3.8⁄29</li>
+<li>Red 3: 192.168.3.16⁄29</li>
+</ul>
+</li>
+<li>IP de Administración: 192.168.99.0/24</li>
+</ul>
+<p class="image-container"><img alt="8.png" src="img/6ebcfb5d3b6829cc.png"></p>
+<aside class="warning"><p>Cada red tiene su <em>VLAN</em> como se puede ver reflejado en la imagen.</p>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Creación de VLANs" duration="0">
+        <p>Primero tendremos que crear y nombrar las diferentes <em>VLAN</em> en nuestro caso haremos 3. También le definimos la ip a la interfaz de administración. Esto se hará desde la consola del switch Cisco de la siguiente forma:  </p>
+<p class="image-container"><img alt="1.png" src="img/37cc3a34f7024c62.png"></p>
+<aside class="warning"><p>El nombre de las <em>VLAN</em> puede ser cualquiera, es totalmente descriptivo para seguir un orden en la infraestructura de la red.</p>
+</aside>
+<p>A continuación asignaremos a cada interfaz del switch que apunta hacia los PC y servers <em>mode access</em>. Así aislaremos cada equipo a su <em>VLAN</em> correspondiente.</p>
+<p>De nuevo se realiza desde la consola Cisco:</p>
+<p class="image-container"><img alt="2.png" src="img/f68d444b1d5a0d51.png"></p>
+<p>A la interfaz que apunta hacia el router se le asignara el modo <em>trunk</em>:</p>
+<p class="image-container"><img alt="3.png" src="img/40755f457963ef02.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Creación de subinterfaces" duration="0">
+        <p>Para el buen funcionamiento de las <em>VLAN</em> tendremos que segmentar la interfaz del Router para que así resuelva adecuadamente las conexión entre los equipos.</p>
+<p>Se realiza de la siguiente forma:</p>
+<p class="image-container"><img alt="4.png" src="img/c472c7bc8705128f.png"></p>
+<aside class="warning"><p>En este caso usamos IP estáticas porque no son muchos equipos los que están repartidos en la empresa. En caso contrario lo recomendable es repartir las IP a través de <em>DCHP</em></p>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Comprobación" duration="0">
+        <p>Para ver cómo ha quedado nuestra infraestructura de red usaremos algunos de los siguientes comandos viendo así que todo se ha configurado correctamente.</p>
+<p>Aquí vemos todas las IP de la red:</p>
+<p class="image-container"><img alt="5.png" src="img/6fb7f1f758a7dd40.png"></p>
+<p>Vemos como todas las subinterfaces se han creado correctamente:</p>
+<p class="image-container"><img alt="6.png" src="img/5f7110955426c987.png"></p>
+<p>La interfaz que apunta hacia el router tiene el modo <em>trunk</em> como vemos a continuación:</p>
+<p class="image-container"><img alt="7.png" src="img/f261740527ff9fd6.png"></p>
+<p>Y por último vemos las <em>VLAN</em> que están asociadas a cada interfaz:</p>
+<p class="image-container"><img alt="9.png" src="img/633dfffb3f76cfba.png"></p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
